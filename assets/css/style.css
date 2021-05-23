@@ -1,0 +1,69 @@
+:root {
+    --bg-color-tiles: rgba(240, 248, 255, 0.598); 
+    --bg-color-btns: rgba(255, 255, 255, 0.741); 
+    --font-color-light: aliceblue;
+}
+body {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+.main-plate {
+    background-color: rgba(57, 57, 57, 0.173);
+    padding: 20px;
+    border-radius: 20px;
+    height: 100vh;
+}
+.container-fluid {
+    background-image: url(../images/background-images/JPEG/thunder-storm.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+.card {
+    border-radius: 15px;
+    border: none;
+    background-color: var(--bg-color-tiles);
+    font-size: 1.5rem;
+}
+.card-title {
+    font-size: 3rem;
+}
+.card-img-top {
+    max-width: 80px;
+    margin: 0 auto;
+}
+.list-group {
+    border-bottom-left-radius: 15px!important;
+    border-bottom-right-radius: 15px!important;
+   
+}
+.list-group-item {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+}
+#currentTemp {
+    font-size: 18vw;
+    text-align: center;
+    font-weight: bold;
+    color: var(--font-color-light)
+
+}
+#currentDate {
+    font-size: 4rem;
+    color: var(--font-color-light);
+}
+#currentCity {
+    font-size: 7rem;
+    color: var(--font-color-light);
+    font-weight: bold;
+}
+#currently-in {
+    color: var(--font-color-light);
+    font-weight: bold;
+}
+#recentSearches .btn {
+    background: var(--bg-color-btns);
+}
+#recentSearches h3 {
+    font-size: 4rem;
+    color: var(--font-color-light);
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+            crossorigin="anonymous"
+        />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet">
+        
+
+        <link rel="stylesheet" href="./assets/css/style.css">
+        <title>What is the weather today?</title>
+    </head>
+    <body>
+        <main class="container-fluid p-0">
+                <div class="main-plate">
+                    <div class="row pt-3">
+                        <div class="col-md-6">
+                            <div class="input-group mb-3">
+                                <input
+                                    type="text"
+                                    class="form-control form-control-lg"
+                                    placeholder="Boston"
+                                    aria-label="Recipient's username"
+                                    aria-describedby="button-addon2"
+                                />
+                                <button
+                                    class="btn btn-outline-light"
+                                    type="button"
+                                    id="button-addon2"
+                                >
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <h2 id="currently-in">Currently in:</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 d-grid gap-2" id="recentSearches">
+                            <h3> Recent Searches</h3>
+                            <input type="button" value="Houston" class="btn btn-lg"></input>
+                            <input type="button" value="Houston" class="btn btn-lg"></input>
+                            <input type="button" value="Houston" class="btn btn-lg"></input>
+                            <input type="button" value="Houston" class="btn btn-lg"></input>
+                        </div>
+                        <div class="col-md-4">
+                            <h3 id="currentDate" class="text-center">May, 22nd</h3>
+                            <h3 id="currentTemp">72°</h3>
+                        </div>
+                        <div class="col-md-4">
+                            <h2 id="currentCity">Boston</h2>
+                            <div class="card p-3">
+                                <p id="currentHumidity">Humidity: 80%</p>
+                                <p id="currentWindSpeed">Wind Speed: 11mph ssw</p>
+                                <p id="currentUvIndex">UV Index: 5</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-around m-3 p-3">
+                        <div class="col-xl-2 col-lg-3 col-12">
+                            <div class="card" id="futureDay1">
+                                <img src="./assets/images/icons/80w/cloudy.png" class="card-img-top pt-4 pb-4" alt="Cloudy Icon" id="futureDay1Icon">
+                                <div class="card-body">
+                                  <h5 class="card-title" id="futureDay1temp">72°</h5>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                  <li class="list-group-item">Wind Speed:</li>
+                                  <li class="list-group-item">Humidity:</li>
+                                </ul>
+                              </div>
+                        </div>
+                    <div class="col-xl-2 col-lg-3 col-12">
+                            <div class="card" id="futureDay2">
+                                <img src="./assets/images/icons/80w/cloudy.png" class="card-img-top pt-4 pb-4" alt="Cloudy Icon" id="futureDay2Icon">
+                                <div class="card-body">
+                                  <h5 class="card-title" id="futureDay2temp">72°</h5>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                  <li class="list-group-item">Wind Speed:</li>
+                                  <li class="list-group-item">Humidity:</li>
+                                </ul>
+                              </div>
+                        </div>
+                    <div class="col-xl-2 col-lg-3 col-12">
+                            <div class="card" id="futureDay3">
+                                <img src="./assets/images/icons/80w/cloudy.png" class="card-img-top pt-4 pb-4" alt="Cloudy Icon" id="futureDay3Icon">
+                                <div class="card-body">
+                                  <h5 class="card-title" id="futureDay3temp">72°</h5>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                  <li class="list-group-item">Wind Speed:</li>
+                                  <li class="list-group-item">Humidity:</li>
+                                </ul>
+                              </div>
+                        </div>
+                    <div class="col-xl-2 col-lg-3 col-12">
+                            <div class="card" id="futureDay4">
+                                <img src="./assets/images/icons/80w/cloudy.png" class="card-img-top pt-4 pb-4" alt="Cloudy Icon" id="futureDay4Icon">
+                                <div class="card-body">
+                                  <h5 class="card-title" id="futureDay4temp">72°</h5>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                  <li class="list-group-item">Wind Speed:</li>
+                                  <li class="list-group-item">Humidity:</li>
+                                </ul>
+                              </div>
+                        </div>
+                    <div class="col-xl-2 col-lg-3 col-12">
+                            <div class="card" id="futureDay5">
+                                <img src="./assets/images/icons/80w/cloudy.png" class="card-img-top pt-4 pb-4" alt="Cloudy Icon" id="futureDay5Icon">
+                                <div class="card-body">
+                                  <h5 class="card-title" id="futureDay5temp">72°</h5>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                  <li class="list-group-item">Wind Speed:</li>
+                                  <li class="list-group-item">Humidity:</li>
+                                </ul>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            
+        </main>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+        <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
