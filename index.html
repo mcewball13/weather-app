@@ -26,6 +26,7 @@
                                 <input
                                     type="text"
                                     class="form-control form-control-lg"
+                                    id="searchCity"
                                     placeholder="Boston"
                                     aria-label="Recipient's username"
                                     aria-describedby="button-addon2"
@@ -44,12 +45,9 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 d-grid gap-2" id="recentSearches">
+                        <div class="col-md-4">
                             <h3> Recent Searches</h3>
-                            <input type="button" value="Houston" class="btn btn-lg"></input>
-                            <input type="button" value="Houston" class="btn btn-lg"></input>
-                            <input type="button" value="Houston" class="btn btn-lg"></input>
-                            <input type="button" value="Houston" class="btn btn-lg"></input>
+                            <div class="d-grid gap-2" id="recentSearches"></div>
                         </div>
                         <div class="col-md-4">
                             <h3 id="currentDate" class="text-center">May, 22nd</h3>
@@ -140,5 +138,6 @@
             integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
             crossorigin="anonymous"
         ></script>
+        <script src="./assets/js/weather.js"></script>
     </body>
 </html>

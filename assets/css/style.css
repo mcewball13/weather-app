@@ -1,11 +1,11 @@
 :root {
-    --bg-color-tiles: rgba(240, 248, 255, 0.598); 
-    --bg-color-btns: rgba(255, 255, 255, 0.741); 
+    --bg-color-tiles: rgba(240, 248, 255, 0.598);
+    --bg-color-btns: rgba(255, 255, 255, 0.741);
     --font-color-light: aliceblue;
 }
 body {
-    font-family: 'Open Sans Condensed', sans-serif;
-    background:linear-gradient(rgba(57, 57, 57, 0.173), rgba(57,57,57,.173) ), url(../images/background-images/JPEG/thunder-storm.jpg);
+    font-family: "Open Sans Condensed", sans-serif;
+    background: url(../images/background-images/JPEG/cloudy.jpg);
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
@@ -28,9 +28,8 @@ body {
     margin: 0 auto;
 }
 .list-group {
-    border-bottom-left-radius: 15px!important;
-    border-bottom-right-radius: 15px!important;
-   
+    border-bottom-left-radius: 15px !important;
+    border-bottom-right-radius: 15px !important;
 }
 .list-group-item {
     border: none;
@@ -40,8 +39,7 @@ body {
     font-size: 18vw;
     text-align: center;
     font-weight: bold;
-    color: var(--font-color-light)
-
+    color: var(--font-color-light);
 }
 #currentDate {
     font-size: 4rem;
