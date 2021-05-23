@@ -5,19 +5,15 @@
 }
 body {
     font-family: 'Open Sans Condensed', sans-serif;
-}
-.main-plate {
-    background-color: rgba(57, 57, 57, 0.173);
-    padding: 20px;
-    border-radius: 20px;
-    height: 100vh;
-}
-.container-fluid {
-    background-image: url(../images/background-images/JPEG/thunder-storm.jpg);
+    background:linear-gradient(rgba(57, 57, 57, 0.173), rgba(57,57,57,.173) ), url(../images/background-images/JPEG/thunder-storm.jpg);
+    background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
 }
+.main-plate {
+    padding: 20px;
+}
+
 .card {
     border-radius: 15px;
     border: none;
