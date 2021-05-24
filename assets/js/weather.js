@@ -18,6 +18,7 @@ function getWeather() {
     duplicate = false;
     var searchCity = $("#searchCity").val();
     saveRecent(searchCity);
+    $("#currentCity").text(searchCity);
 
     //fetch api
     fetch(
