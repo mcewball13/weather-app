@@ -12,6 +12,7 @@ function loadRecent() {
 }
 // inital call to load dom elements
 loadRecent();
+function checkTime5Day(data) {}
 function getWeather() {
     // reinitiallize duplicate to false to check to see if there are dups
     duplicate = false;
@@ -22,7 +23,7 @@ function getWeather() {
     fetch(
         "http://api.openweathermap.org/data/2.5/forecast?q=" +
             searchCity +
-            "&appid=9b35244b1b7b8578e6c231fd7654c186"
+            "&appid=9b35244b1b7b8578e6c231fd7654c186&units=imperial"
     )
         .then(function (response) {
             return response.json();
@@ -30,9 +31,18 @@ function getWeather() {
         .then(function (response) {
             let currentTime = "14:00:00";
             let dtText = response.list[0].dt_txt.split(" ")[1];
-            let localTime = parseInt(dtText) - 7;
-            console.log("this is the dtText" + dtText);
-            console.log("dtText is equal to 14 " + (dtText === currentTime));
+
+            // This is for the current temp/ humidity/ wind speed/ uv index
+            var mainTemp = $("#currentTemp").text(
+                parseInt(response.list[0].main.temp) + "°"
+            );
+            // parseInt(mainTemp[0].innerText);
+            console.log(mainTemp);
+
+            // this is for the 5 day
+            for (var i = 0; i < response.list.length; i++)
+                if (currentTime === dtText) {
+                }
         });
 }
 $("#button-addon2").on("click", function () {
