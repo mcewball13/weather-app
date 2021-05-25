@@ -1,6 +1,6 @@
 var recentSearchArr = [];
-var currentDate = new Date();
-console.log(currentDate);
+var currentDate = moment().format("YYYY-MM-DD kk:mm:ss");
+
 var duplicate = false;
 function loadRecent() {
     var loadedRecent = JSON.parse(localStorage.getItem("recentCities"));
@@ -18,7 +18,6 @@ function getWeather() {
     duplicate = false;
     var searchCity = $("#searchCity").val();
     saveRecent(searchCity);
-    $("#currentCity").text(searchCity);
 
     //fetch api
     fetch(
@@ -27,23 +26,75 @@ function getWeather() {
             "&appid=9b35244b1b7b8578e6c231fd7654c186&units=imperial"
     )
         .then(function (response) {
-            return response.json();
+            if (response.ok) {
+                return response.json();
+            } else {
+                alert("Invalid City name");
+                return;
+            }
         })
         .then(function (response) {
             let currentTime = "14:00:00";
-            let dtText = response.list[0].dt_txt.split(" ")[1];
 
             // This is for the current temp/ humidity/ wind speed/ uv index
             var mainTemp = $("#currentTemp").text(
                 parseInt(response.list[0].main.temp) + "°"
             );
-            // parseInt(mainTemp[0].innerText);
-            console.log(mainTemp);
+            // searched city label
+            $("#currentCity").text(searchCity);
+            // main data
+            $("#currentHumidity").text(
+                "Humidity: " + response.list[0].main.humidity + "%"
+            );
+            $("#currentWindSpeed").text(
+                "Wind Speed: " +
+                    parseInt(response.list[0].wind.speed) +
+                    "mph at " +
+                    response.list[0].wind.deg +
+                    "°"
+            );
+            // this is for the 5 day temp
+            console.log(response.list);
+            var nextDay = moment().add(1, "d").format("YYYY-MM-DD 14:00:00");
+            for (var i = 0; i < response.list.length; i++) {
+                let dtText = response.list[i].dt_txt;
+                if (dtText === nextDay)
+                    console.log(
+                        "This is all the dt-text's" + response.list[i].dt_txt
+                    );
+            }
 
-            // this is for the 5 day
-            for (var i = 0; i < response.list.length; i++)
-                if (currentTime === dtText) {
-                }
+            // if ( === "14:00:00") {
+            //     console.log("This is all the 2 oclocks");
+            // }
+            // console.log("This is the moment time " + nextDay);
+
+            // for (var i = 0; i < response.list.length; i++) {
+            //     console.log("This is dt Text " + dtText);
+            //     if (nextDay === dtText) {
+            //     }
+            // }
+            // var fiveDayDt = response.list[i].main.temp;
+            // if (currentTime === fiveDayDt) {
+            // }
+
+            var currentCityLat = response.city.coord.lat;
+            var currentCityLon = response.city.coord.lon;
+            return fetch(
+                "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+                    currentCityLat +
+                    "&lon=" +
+                    currentCityLon +
+                    "&appid=9b35244b1b7b8578e6c231fd7654c186&units=imperial"
+            );
+        })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (response) {
+            // print UV index
+            $("#currentUvIndex").text("UV Index: " + response.current.uvi);
+            console.log("This is the current uvi " + response.current.uvi);
         });
 }
 $("#button-addon2").on("click", function () {
