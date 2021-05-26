@@ -1,8 +1,10 @@
 var recentSearchArr = [];
-var currentDate = moment().format("YYYY-MM-DD kk:mm:ss");
+var currentDate = moment().format("MMM Do");
 var loadedRecent = [];
 var duplicate = false;
 function loadRecent() {
+    // initalize date
+    $("#currentDate").text(currentDate);
     loadedRecent = JSON.parse(localStorage.getItem("recentCities"));
     if (loadedRecent !== null) {
         $(loadedRecent).each(function (index, value) {
