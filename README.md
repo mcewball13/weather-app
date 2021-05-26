@@ -11,3 +11,7 @@ This weather app works by allowing the user to input a city name in plain englis
 This app was build with mainly Jquery. Using some HTML and CSS to posish it up. We pulled from the Open Weather API for the weather data.
 
 ![](./assets/images/weather-app.gif)
+
+## Live link
+
+https://mcewball13.github.io/weather-app/
