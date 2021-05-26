@@ -16,7 +16,6 @@ function getWeather() {
     // reinitiallize duplicate to false to check to see if there are dups
     duplicate = false;
     var searchCity = $("#searchCity").val();
-    saveRecent(searchCity);
 
     //fetch api
     fetch(
@@ -26,6 +25,7 @@ function getWeather() {
     )
         .then(function (response) {
             if (response.ok) {
+                saveRecent(searchCity);
                 return response.json();
             } else {
                 alert("Invalid City name");
@@ -69,8 +69,9 @@ function getWeather() {
             // this is for the 5 day temp
             console.log(response.list);
 
+            let newCard = $("#dailyForecastContainer").empty();
             for (var i = 0; i < 5; i++) {
-                let newCard = $("#dailyForecastContainer").append(
+                $(newCard).append(
                     $("<div/>", {
                         class: "col-xl-2 col-md-4 col-12 m-2",
                     }).append(
@@ -118,23 +119,6 @@ function getWeather() {
                 );
                 console.log(newCard);
             }
-
-            //  http://openweathermap.org/img/wn/10d@2x.png
-
-            // if ( === "14:00:00") {
-            //     console.log("This is all the 2 oclocks");
-            // }
-            // console.log("This is the moment time " + nextDay);
-
-            // for (var i = 0; i < response.list.length; i++) {
-            //     console.log("This is dt Text " + dtText);
-            //     if (nextDay === dtText) {
-            //     }
-            // }
-            // var fiveDayDt = response.list[i].main.temp;
-            // if (currentTime === fiveDayDt) {
-            // }
-            // print UV index
         });
 }
 $("#button-addon2").on("click", function () {
@@ -174,17 +158,6 @@ function saveRecent(cityName) {
             }
         }
     }
-
-    // console.log($("#recentSearches").children()[0].value);
-
-    // if (recentSearchArr.length <= 6) {
-    //     var i = 0;
-    //     $("#recentSearches").each(function (btn) {
-    //         recentSearchArr.push($("#recentSearches").children()[i].value);
-    //         i++;
-    //     });
-    //     localStorage.setItem("recentCities", JSON.stringify(recentSearchArr));
-    // }
 }
 
 // if moment equals dt display current temp
