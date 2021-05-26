@@ -5,6 +5,7 @@ var duplicate = false;
 function loadRecent() {
     // initalize date
     $("#currentDate").text(currentDate);
+    // load from local storage
     loadedRecent = JSON.parse(localStorage.getItem("recentCities"));
     if (loadedRecent !== null) {
         $(loadedRecent).each(function (index, value) {
@@ -117,6 +118,7 @@ function getWeather() {
 
             let newCard = $("#dailyForecastContainer").empty();
             for (var i = 0; i < 5; i++) {
+                // Loops through and creat all the plates
                 $(newCard).append(
                     $("<div/>", {
                         class: "col-xl-2 col-md-4 col-12 m-2",
@@ -206,7 +208,7 @@ $("#recentSearches").on("click", ".btn", function (btn) {
     getWeather();
     $("#searchCity").val("").trigger("focus");
 });
-
+// functions
 function saveRecent(cityName) {
     var recentSearchBtn = $("<input>", {
         type: "button",
@@ -236,5 +238,3 @@ function clearRecent() {
     localStorage.removeItem("recentCities");
     loadRecent();
 }
-
-// if moment equals dt display current temp
