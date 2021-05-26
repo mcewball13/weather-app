@@ -12,7 +12,6 @@ function loadRecent() {
 }
 // inital call to load dom elements
 loadRecent();
-function checkTime5Day(data) {}
 function getWeather() {
     // reinitiallize duplicate to false to check to see if there are dups
     duplicate = false;
@@ -34,35 +33,93 @@ function getWeather() {
             }
         })
         .then(function (response) {
-            let currentTime = "14:00:00";
+            var currentCityLat = response.city.coord.lat;
+            var currentCityLon = response.city.coord.lon;
 
-            // This is for the current temp/ humidity/ wind speed/ uv index
-            var mainTemp = $("#currentTemp").text(
-                parseInt(response.list[0].main.temp) + "°"
+            return fetch(
+                "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+                    currentCityLat +
+                    "&lon=" +
+                    currentCityLon +
+                    "&appid=9b35244b1b7b8578e6c231fd7654c186&units=imperial"
             );
+        })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (response) {
+            // This is for the current temp/ humidity/ wind speed/ uv index
+            $("#currentTemp").text(parseInt(response.current.temp) + "°");
             // searched city label
             $("#currentCity").text(searchCity);
             // main data
             $("#currentHumidity").text(
-                "Humidity: " + response.list[0].main.humidity + "%"
+                "Humidity: " + response.current.humidity + "%"
             );
             $("#currentWindSpeed").text(
                 "Wind Speed: " +
-                    parseInt(response.list[0].wind.speed) +
+                    parseInt(response.current.wind_speed) +
                     "mph at " +
-                    response.list[0].wind.deg +
+                    response.current.wind_deg +
                     "°"
             );
+            $("#currentUvIndex").text("UV Index: " + response.current.uvi);
+            console.log("This is the current uvi " + response.current.uvi);
+
             // this is for the 5 day temp
             console.log(response.list);
-            var nextDay = moment().add(1, "d").format("YYYY-MM-DD 14:00:00");
-            for (var i = 0; i < response.list.length; i++) {
-                let dtText = response.list[i].dt_txt;
-                if (dtText === nextDay)
-                    console.log(
-                        "This is all the dt-text's" + response.list[i].dt_txt
-                    );
+
+            for (var i = 0; i < 5; i++) {
+                let newCard = $("#dailyForecastContainer").append(
+                    $("<div/>", {
+                        class: "col-xl-2 col-md-4 col-12 m-2",
+                    }).append(
+                        $("<div/>", {
+                            class: "card",
+                            id: `futureDay${i}`,
+                        })
+                            .append(
+                                $("<img>", {
+                                    src: ` http://openweathermap.org/img/wn/${response.daily[i].weather[0].icon}@2x.png`,
+                                    class: "card-img-top pt-4 pb-4",
+                                    alt: response.daily[i].weather.description,
+                                })
+                            )
+
+                            .append(
+                                $("<div/>", { class: "card-body" }).append(
+                                    $("<span/>", {
+                                        class: "card-title",
+                                        id: `futureDay${i}temp`,
+                                        text: Math.floor(
+                                            response.daily[i].temp.day
+                                        ),
+                                    })
+                                )
+                            )
+                            .append(
+                                $("<ul>", {
+                                    class: "list-group list-group-flush",
+                                })
+                                    .append(
+                                        $("<li>", {
+                                            class: "list-group-item",
+                                            text: `Wind Speed: ${response.daily[i].wind_speed}`,
+                                        })
+                                    )
+                                    .append(
+                                        $("<li>", {
+                                            class: "list-group-item",
+                                            text: `Humidity:  ${response.daily[i].humidity}`,
+                                        })
+                                    )
+                            )
+                    )
+                );
+                console.log(newCard);
             }
+
+            //  http://openweathermap.org/img/wn/10d@2x.png
 
             // if ( === "14:00:00") {
             //     console.log("This is all the 2 oclocks");
@@ -77,24 +134,7 @@ function getWeather() {
             // var fiveDayDt = response.list[i].main.temp;
             // if (currentTime === fiveDayDt) {
             // }
-
-            var currentCityLat = response.city.coord.lat;
-            var currentCityLon = response.city.coord.lon;
-            return fetch(
-                "https://api.openweathermap.org/data/2.5/onecall?lat=" +
-                    currentCityLat +
-                    "&lon=" +
-                    currentCityLon +
-                    "&appid=9b35244b1b7b8578e6c231fd7654c186&units=imperial"
-            );
-        })
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (response) {
             // print UV index
-            $("#currentUvIndex").text("UV Index: " + response.current.uvi);
-            console.log("This is the current uvi " + response.current.uvi);
         });
 }
 $("#button-addon2").on("click", function () {
