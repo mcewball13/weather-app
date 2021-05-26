@@ -45,9 +45,17 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <h3>Recent Searches</h3>
+                        <span class="d-flex justify-content-around no-wrap">
+                            <h3>Recent Searches</h3>
+                            <div>
+                                <button id="clearRecent" class="btn btn-light">
+                                    Clear Recent Searches
+                                </button>
+                            </div>
+                        </span>
                         <div class="d-grid gap-2" id="recentSearches"></div>
                     </div>
+
                     <div class="col-md-4 order-three">
                         <h3 id="currentDate" class="text-center">May, 22nd</h3>
                         <h3 id="currentTemp">72°</h3>
@@ -67,103 +75,7 @@
                 <div
                     class="row justify-content-evenly m-3 p-3"
                     id="dailyForecastContainer"
-                >
-                    <!-- <div class="col-xl-2 col-md-6 col-12">
-                        <div class="card" id="futureDay1">
-                            <img
-                                src="./assets/images/icons/80w/cloudy.png"
-                                class="card-img-top pt-4 pb-4"
-                                alt="Cloudy Icon"
-                                id="futureDay1Icon"
-                            />
-                            <div class="card-body">
-                                <h5 class="card-title" id="futureDay1temp">
-                                    72°
-                                </h5>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Wind Speed:</li>
-                                <li class="list-group-item">Humidity:</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-12">
-                        <div class="card" id="futureDay2">
-                            <img
-                                src="./assets/images/icons/80w/cloudy.png"
-                                class="card-img-top pt-4 pb-4"
-                                alt="Cloudy Icon"
-                                id="futureDay2Icon"
-                            />
-                            <div class="card-body">
-                                <h5 class="card-title" id="futureDay2temp">
-                                    72°
-                                </h5>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Wind Speed:</li>
-                                <li class="list-group-item">Humidity:</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-12">
-                        <div class="card" id="futureDay3">
-                            <img
-                                src="./assets/images/icons/80w/cloudy.png"
-                                class="card-img-top pt-4 pb-4"
-                                alt="Cloudy Icon"
-                                id="futureDay3Icon"
-                            />
-                            <div class="card-body">
-                                <h5 class="card-title" id="futureDay3temp">
-                                    72°
-                                </h5>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Wind Speed:</li>
-                                <li class="list-group-item">Humidity:</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-12">
-                        <div class="card" id="futureDay4">
-                            <img
-                                src="./assets/images/icons/80w/cloudy.png"
-                                class="card-img-top pt-4 pb-4"
-                                alt="Cloudy Icon"
-                                id="futureDay4Icon"
-                            />
-                            <div class="card-body">
-                                <h5 class="card-title" id="futureDay4temp">
-                                    72°
-                                </h5>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Wind Speed:</li>
-                                <li class="list-group-item">Humidity:</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-12">
-                        <div class="card" id="futureDay5">
-                            <img
-                                src="./assets/images/icons/80w/cloudy.png"
-                                class="card-img-top pt-4 pb-4"
-                                alt="Cloudy Icon"
-                                id="futureDay5Icon"
-                            />
-                            <div class="card-body">
-                                <h5 class="card-title" id="futureDay5temp">
-                                    72°
-                                </h5>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">Wind Speed:</li>
-                                <li class="list-group-item">Humidity:</li>
-                            </ul>
-                        </div>
-                    </div> -->
-                </div>
+                ></div>
             </div>
         </main>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>

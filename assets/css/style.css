@@ -1,11 +1,11 @@
 :root {
     --bg-color-tiles: rgba(240, 248, 255, 0.598);
     --bg-color-btns: rgba(255, 255, 255, 0.741);
-    --font-color-light: aliceblue;
+    --font-color-light: rgb(255, 255, 255);
 }
 body {
     font-family: "Open Sans Condensed", sans-serif;
-    background: url(../images/background-images/JPEG/sunny.jpg);
+    background-image: url(../images/background-images/JPEG/snowy.jpg);
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,8 +18,10 @@ body {
     border-radius: 15px;
     border: none;
     background-color: var(--bg-color-tiles);
+    backdrop-filter: blur(1rem);
     font-size: 1.5rem;
 }
+
 .card-title {
     font-size: 3rem;
 }

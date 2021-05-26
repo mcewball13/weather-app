@@ -1,14 +1,17 @@
 var recentSearchArr = [];
 var currentDate = moment().format("YYYY-MM-DD kk:mm:ss");
-
+var loadedRecent = [];
 var duplicate = false;
 function loadRecent() {
-    var loadedRecent = JSON.parse(localStorage.getItem("recentCities"));
-    console.log(loadedRecent);
-    $(loadedRecent).each(function (index, value) {
-        console.log("Thsi is the value " + value);
-        saveRecent(value);
-    });
+    loadedRecent = JSON.parse(localStorage.getItem("recentCities"));
+    if (loadedRecent !== null) {
+        $(loadedRecent).each(function (index, value) {
+            saveRecent(value);
+        });
+    } else {
+        recentSearchArr = [];
+        return $("#recentSearches").empty();
+    }
 }
 // inital call to load dom elements
 loadRecent();
@@ -64,10 +67,51 @@ function getWeather() {
                     "°"
             );
             $("#currentUvIndex").text("UV Index: " + response.current.uvi);
-            console.log("This is the current uvi " + response.current.uvi);
+            if (response.current.weather[0].icon === "04d") {
+                $("body").css(
+                    "background-image",
+                    "url(assets/images/background-images/JPEG/cloudy.jpg)"
+                );
+            }
+            if (
+                response.current.weather[0].icon === "03d" ||
+                response.current.weather[0].icon === "02d"
+            ) {
+                $("body").css(
+                    "background-image",
+                    "url(assets/images/background-images/JPEG/partly-cloudy.jpg)"
+                );
+            }
+            if (response.current.weather[0].icon === "01d") {
+                $("body").css(
+                    "background-image",
+                    "url(assets/images/background-images/JPEG/sunny.jpg)"
+                );
+            }
+            if (
+                response.current.weather[0].icon === "09d" ||
+                response.current.weather[0].icon === "10d" ||
+                response.current.weather[0].icon === "50d"
+            ) {
+                $("body").css(
+                    "background-image",
+                    "url(assets/images/background-images/JPEG/rainy.jpg)"
+                );
+            }
+            if (response.current.weather[0].icon === "11d") {
+                $("body").css(
+                    "background-image",
+                    "url(assets/images/background-images/JPEG/thunder-storm.jpg)"
+                );
+            }
+            if (response.current.weather[0].icon === "13d") {
+                $("body").css(
+                    "background-image",
+                    "url(assets/images/background-images/JPEG/snowy.jpg)"
+                );
+            }
 
             // this is for the 5 day temp
-            console.log(response.list);
 
             let newCard = $("#dailyForecastContainer").empty();
             for (var i = 0; i < 5; i++) {
@@ -80,6 +124,15 @@ function getWeather() {
                             id: `futureDay${i}`,
                         })
                             .append(
+                                $("<p>", {
+                                    text: moment
+                                        .unix(response.daily[i].dt)
+                                        .format("MMM Do"),
+                                    class: "text-center",
+                                })
+                            )
+
+                            .append(
                                 $("<img>", {
                                     src: ` http://openweathermap.org/img/wn/${response.daily[i].weather[0].icon}@2x.png`,
                                     class: "card-img-top pt-4 pb-4",
@@ -88,13 +141,26 @@ function getWeather() {
                             )
 
                             .append(
-                                $("<div/>", { class: "card-body" }).append(
+                                $("<div/>", {
+                                    class: "card-body d-flex justify-content-around no-wrap",
+                                }).append(
                                     $("<span/>", {
                                         class: "card-title",
-                                        id: `futureDay${i}temp`,
-                                        text: Math.floor(
-                                            response.daily[i].temp.day
-                                        ),
+                                        id: `futureDay${i}HighTemp`,
+                                        text:
+                                            "High: " +
+                                            Math.floor(
+                                                response.daily[i].temp.max
+                                            ),
+                                    }),
+                                    $("<span/>", {
+                                        class: "card-title",
+                                        id: `futureDay${i}LowTemp`,
+                                        text:
+                                            "Low: " +
+                                            Math.floor(
+                                                response.daily[i].temp.min
+                                            ),
                                     })
                                 )
                             )
@@ -105,22 +171,29 @@ function getWeather() {
                                     .append(
                                         $("<li>", {
                                             class: "list-group-item",
-                                            text: `Wind Speed: ${response.daily[i].wind_speed}`,
+                                            text: `Wind Speed: ${Math.floor(
+                                                response.daily[i].wind_speed
+                                            )}mph`,
                                         })
                                     )
                                     .append(
                                         $("<li>", {
                                             class: "list-group-item",
-                                            text: `Humidity:  ${response.daily[i].humidity}`,
+                                            text: `Humidity:  ${response.daily[i].humidity}% `,
                                         })
                                     )
                             )
                     )
                 );
-                console.log(newCard);
             }
         });
 }
+// event Listeners
+$("#clearRecent").on("click", function () {
+    localStorage.removeItem("recentCities");
+    loadRecent();
+});
+
 $("#button-addon2").on("click", function () {
     getWeather();
     $("#searchCity").val("").trigger("focus");
@@ -140,7 +213,6 @@ function saveRecent(cityName) {
     });
     verifyNoDup(cityName);
 
-    console.log("are there any duplicates" + duplicate);
     if (!duplicate) {
         $("#recentSearches").append(recentSearchBtn);
         recentSearchArr.push(cityName);
@@ -150,7 +222,6 @@ function saveRecent(cityName) {
 
     function verifyNoDup(cityName) {
         for (var i = 0; i < recentSearchArr.length; i++) {
-            console.log("recent search item " + recentSearchArr[i]);
             if (cityName === recentSearchArr[i] || cityName == "undefined") {
                 return (duplicate = true);
             } else {
@@ -158,6 +229,10 @@ function saveRecent(cityName) {
             }
         }
     }
+}
+function clearRecent() {
+    localStorage.removeItem("recentCities");
+    loadRecent();
 }
 
 // if moment equals dt display current temp
