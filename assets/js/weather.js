@@ -138,7 +138,7 @@ function getWeather() {
 
                             .append(
                                 $("<img>", {
-                                    src: ` http://openweathermap.org/img/wn/${response.daily[i].weather[0].icon}@2x.png`,
+                                    src: ` https://openweathermap.org/img/wn/${response.daily[i].weather[0].icon}@2x.png`,
                                     class: "card-img-top pt-4 pb-4",
                                     alt: response.daily[i].weather.description,
                                 })
